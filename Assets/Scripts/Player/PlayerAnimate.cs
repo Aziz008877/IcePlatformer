@@ -16,7 +16,9 @@ public class PlayerAnimate : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _playerInput = GetComponent<PlayerInput>();
+        
         _playerInput.OnPlayerMoved += Running;
+        _playerInput.OnPlayerJumped += Jump;
     }
 
     private void BoolState(string animationName, bool state)
@@ -39,6 +41,11 @@ public class PlayerAnimate : MonoBehaviour
         {
             BoolState("IsWalking", false);
         }
+    }
+
+    private void Jump()
+    {
+        TriggerState("IsJumping");
     }
 
     private void OnDestroy()
